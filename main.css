@@ -1,0 +1,27 @@
+html {
+	height: 100%;
+}
+
+#open-window, #editor-window {
+	display: flex;
+	height: 100%;
+	margin: 0;
+}
+
+#file-selection {
+	margin: auto;
+}
+
+#editor-window {
+	flex-direction: column;
+}
+
+#toolbar > p {
+	margin: .5em;
+}
+
+#editor {
+	flex-grow: 1;
+	position: relative;
+	overflow: auto;
+}

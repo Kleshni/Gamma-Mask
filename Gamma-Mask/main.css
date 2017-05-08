@@ -1,0 +1,72 @@
+.Gamma-Mask-main {
+	display: flex;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.Gamma-Mask-toolbox, .Gamma-Mask-field {
+	overflow: auto;
+}
+
+.Gamma-Mask-toolbox {
+	width: 20em;
+	min-width: 20em;
+	background: silver;
+	color: black;
+}
+
+.Gamma-Mask-toolbox > section {
+	overflow: auto; /* Prevent margin collapse */
+}
+
+.Gamma-Mask-toolbox > section:nth-child(even) {
+	background: white;
+}
+
+.Gamma-Mask-toolbox > section > p, .Gamma-Mask-toolbox > section > ol {
+	margin: .5em;
+}
+
+.Gamma-Mask-log {
+	min-height: 6em;
+	padding: 0 0 1em 0;
+	list-style-position: inside;
+	background: white;
+}
+
+.Gamma-Mask-log > li {
+	margin: .5em;
+}
+
+.Gamma-Mask-current {
+	font-weight: bold;
+}
+
+.Gamma-Mask-field {
+	flex-grow: 1;
+	background: dimgrey;
+}
+
+.Gamma-Mask-selection-wrapper {
+	display: inline-block;
+	position: relative;
+	box-sizing: border-box;
+	min-width: 100%;
+	min-height: 100%;
+	padding: 1em;
+}
+
+.Gamma-Mask-selection, .Gamma-Mask-canvas {
+	vertical-align: top;
+}
+
+.Gamma-Mask-selection {
+	position: absolute;
+	left: calc(1em - 1px);
+	top: calc(1em - 1px);
+}
+
+.Gamma-Mask-canvas {
+	background: white;
+}

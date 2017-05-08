@@ -1,0 +1,167 @@
+<!doctype HTML>
+
+<meta charset = "UTF-8" />
+
+<title>Γ-Mask</title>
+
+<link rel = "stylesheet" href = "Gamma-Mask/main.css" />
+<link rel = "stylesheet" href = "main.css" />
+
+<script src = "Gamma-Mask/main.js"></script>
+<script src = "Gamma-Mask/Meko-look-up.js"></script>
+<script src = "Gamma-Mask/filters.js"></script>
+<script src = "Gamma-Mask/editor.js"></script>
+<script src = "main.js"></script>
+
+<template id = "open-window-template">
+	<section id = "file-selection">
+		<p><input id = "file" type = "file" accept = "image/jpeg,image/png,image/gif" /> <input id = "open" type = "button" value = "Open" /></p>
+
+		<p>Works completely offline.</p>
+	</section>
+</template>
+
+<template id = "editor-window-template">
+	<section id = "toolbar">
+		<p><input id = "save" type = "button" value = "Save" /> <input id = "close" type = "button" value = "Close" /></p>
+	</section>
+
+	<section id = "editor"></section>
+</template>
+
+<template id = "editor-template">
+	<section class = "Gamma-Mask-main">
+		<section class = "Gamma-Mask-toolbox">
+			<section>
+				<p><input class = "Gamma-Mask-negative" type = "button" value = "Negative" /></p>
+
+				<p>
+					<label><input class = "Gamma-Mask-negative-R" type = "checkbox" checked = "checked" /> R</label>
+					<label><input class = "Gamma-Mask-negative-G" type = "checkbox" checked = "checked" /> G</label>
+					<label><input class = "Gamma-Mask-negative-B" type = "checkbox" checked = "checked" /> B</label>
+				</p>
+			</section>
+
+			<section>
+				<p><input class = "Gamma-Mask-xor-0x80" type = "button" value = "Xor 0x80" /></p>
+
+				<p>
+					<label><input class = "Gamma-Mask-xor-0x80-R" type = "checkbox" checked = "checked" /> R</label>
+					<label><input class = "Gamma-Mask-xor-0x80-G" type = "checkbox" checked = "checked" /> G</label>
+					<label><input class = "Gamma-Mask-xor-0x80-B" type = "checkbox" checked = "checked" /> B</label>
+				</p>
+			</section>
+
+			<section>
+				<p><input class = "Gamma-Mask-rotate" type = "button" value = "Rotate" /></p>
+
+				<p>
+					<form class = "Gamma-Mask-rotate-order">
+						<label><input name = "order" type = "radio" value = "RGB" checked = "checked" /> RGB</label>
+						<label><input name = "order" type = "radio" value = "RG" /> RG</label>
+						<label><input name = "order" type = "radio" value = "GB" /> GB</label>
+						<label><input name = "order" type = "radio" value = "RB" /> RB</label>
+					</form>
+				</p>
+			</section>
+
+			<section>
+				<p><input class = "Gamma-Mask-flip-up-down" type = "button" value = "Flip up-down" /></p>
+			</section>
+
+			<section>
+				<p><input class = "Gamma-Mask-flip-left-right" type = "button" value = "Flip left-right" /></p>
+			</section>
+
+			<section>
+				<p><input class = "Gamma-Mask-Win" type = "button" value = "Win" /></p>
+			</section>
+
+			<section>
+				<p><input class = "Gamma-Mask-vertical-glass" type = "button" value = "Vertical glass" /></p>
+
+				<p><label>Width: <input class = "Gamma-Mask-vertical-glass-width" type = "number" value = "8" min = "2" /></label></p>
+			</section>
+
+			<section>
+				<p><input class = "Gamma-Mask-horizontal-glass" type = "button" value = "Horizontal glass" /></p>
+
+				<p><label>Height: <input class = "Gamma-Mask-horizontal-glass-height" type = "number" value = "8" min = "2" /></label></p>
+			</section>
+
+			<section>
+				<p><input class = "Gamma-Mask-Q0" type = "button" value = "Q0" /></p>
+
+				<p><label><input class = "Gamma-Mask-Q0-vertical-glass" type = "checkbox" checked = "checked" /> vertical glass</label></p>
+
+				<p><label><input class = "Gamma-Mask-Q0-horizontal-glass" type = "checkbox" checked = "checked" /> horizontal glass</label></p>
+
+				<p><label><input class = "Gamma-Mask-Q0-negative" type = "checkbox" checked = "checked" /> negative</label></p>
+
+				<p><label><input class = "Gamma-Mask-Q0-flip-up-down" type = "checkbox" /> flip up-down</label></p>
+
+				<p><label><input class = "Gamma-Mask-Q0-flip-left-right" type = "checkbox" /> flip left-right</label></p>
+
+				<p><label><input class = "Gamma-Mask-Q0-xor-0x80" type = "checkbox" /> xor 0x80</label></p>
+			</section>
+
+			<section>
+				<p><input class = "Gamma-Mask-FL" type = "button" value = "FL" /></p>
+
+				<p><label><input class = "Gamma-Mask-FL-negative" type = "checkbox" checked = "checked"> negative</label></p>
+			</section>
+
+			<section>
+				<p><input class = "Gamma-Mask-Meko-minus" type = "button" value = "Meko -" /></p>
+			</section>
+
+			<section>
+				<p><input class = "Gamma-Mask-Meko-plus" type = "button" value = "Meko +" /></p>
+			</section>
+
+			<section>
+				<p><input class = "Gamma-Mask-CP" type = "button" value = "CP" /></p>
+
+				<p><label>Password (1 to 16 English letters): <input class = "Gamma-Mask-CP-password" /></label></p>
+			</section>
+
+			<section>
+				<p>
+					Grid cell size:
+
+					<form class = "Gamma-Mask-cell-size">
+						<label><input name = "cell-size" type = "radio" value = "1" /> 1</label>
+						<label><input name = "cell-size" type = "radio" value = "8" checked = "checked" /> 8</label>
+						<label><input name = "cell-size" type = "radio" value = "16" /> 16</label>
+					</form>
+				</p>
+			</section>
+
+			<section>
+				<p>
+					<input class = "Gamma-Mask-undo" type = "button" value = "Undo" />
+					<input class = "Gamma-Mask-redo" type = "button" value = "Redo" />
+				</p>
+
+				<p>Log:</p>
+
+				<ol class = "Gamma-Mask-log"></ol>
+			</section>
+		</section>
+
+		<section class = "Gamma-Mask-field">
+			<!-- Firefox fires mouse* events on scroll bars -->
+
+			<div class = "Gamma-Mask-selection-wrapper">
+				<canvas class = "Gamma-Mask-selection"></canvas>
+				<canvas class = "Gamma-Mask-canvas"></canvas>
+			</div>
+		</section>
+	</section>
+</template>
+
+<body>
+	<noscript>
+		<p>Javascript required</p>
+	</noscript>
+</body>
